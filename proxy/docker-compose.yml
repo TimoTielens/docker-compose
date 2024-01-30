@@ -4,7 +4,7 @@ services:
     image: jc21/nginx-proxy-manager:latest
     container_name: proxy
     hostname: proxy
-    restart: unless-stopped
+    restart: always
     environment:
       - TZ=Europe/Amsterdam
     ports:
