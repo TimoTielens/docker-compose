@@ -5,6 +5,8 @@ services:
     container_name: portainer
     hostname: portainer
     restart: always
+    environment:
+      - TZ=Europe/Amsterdam
     ports:
       - 9443:9443
     volumes:
