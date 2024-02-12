@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=YourStrong@Passw0rd
+      - SA_PASSWORD= ${MSSQL_SECRET_KEY}
       - TZ=Europe/Amsterdam
     ports:
       - 1433:1433
