@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  portainer:
+    image: nodered/node-red
+    container_name: nodered
+    hostname: nodered
+    restart: always
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - 1880:1880
+    volumes:
+      - ./data:/data
