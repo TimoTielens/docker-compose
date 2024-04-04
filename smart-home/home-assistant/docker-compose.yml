@@ -1,20 +1,18 @@
-version: "3.8"
 services:
   homeassistant:
-    image: ghcr.io/home-assistant/home-assistant:{HOMEASSISTANT_IMAGE_VERSION:? home assistant version required} 
-    hostname: {PIHOLE_NAME:?  home assistant name required}
-    container_name: {PIHOLE_NAME:?  home assistant name required}
+    image: ghcr.io/home-assistant/home-assistant:${HOMEASSISTANT_IMAGE_VERSION:? home assistant version required}
+    hostname: ${HOMEASSISTANT_NAME:? home assistant name required}
+    container_name: ${HOMEASSISTANT_NAME:? home assistant name required}
     restart: unless-stopped
     environment:
-      - TZ={TIMEZONE:? timezone required}
+      - TZ=${TIMEZONE:? timezone required}
     ports:
       - 8123:8123
-    network_mode: host
     privileged: true
     volumes:
-      - /config:/config:rw
+      - /homeassistant/config:/config:rw
       - /run/dbus:/run/dbus:ro
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
     networks:
       -  homeassistant
+networks:
+  homeassistant:
