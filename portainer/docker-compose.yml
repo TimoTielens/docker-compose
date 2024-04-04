@@ -1,14 +1,17 @@
 version: "3.8"
 services:
   portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    hostname: portainer
-    restart: always
+    image: docker.io/library/portainer/portainer-ce:{PORTAINER_IMAGE_VERSION:? portainer image version required}
+    hostname: {PORTAINER_NAME:? portainer name required}
+    container_name: {PORTAINER_NAME:? portainer name required}
+    restart: unless-stopped
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ={TIMEZONE:? timezone required}
     ports:
+      - 8000:8000 
       - 9443:9443
     volumes:
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - portainer

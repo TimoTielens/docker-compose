@@ -1,0 +1,18 @@
+version: '3.8' 
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:{MSSQL_IMAGE_VERSION:? database image version required}
+    hostname: {MSSQL_NAME:? database name required}
+    container_name: {MSSQL_NAME:? database name required}
+    restart: unless-stopped
+    environment:
+      - TZ={TIMEZONE:? timezone required}
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=${MSSQL_SA_PASSWORD:? database master password required}
+      - MSSQL_COLLATION={MSSQL_COLLATION:? database collation required}
+    ports:
+      - 1433:1433
+    volumes:
+      - ./data:/var/opt/mssql:rw
+    networks:
+      - mssql

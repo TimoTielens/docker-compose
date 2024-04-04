@@ -1,13 +1,16 @@
 version: "3.8"
 services:
   portainer:
-    image: nodered/node-red
-    container_name: nodered
-    hostname: nodered
-    restart: always
+    image: docker.io/library/nodered/node-red:{NODERED_IMAGE_VERSION:? Node-RED image version required}
+    hostname: {NODERED_NAME:? Node-RED name required}
+    container_name: {NODERED_NAME:? Node-RED name required}
+    restart: unless-stopped
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ={TIMEZONE:? timezone required}
+      - PIHOLE_DOMAIN={PIHOLE_DOMAIN:? pihole domain name required}
     ports:
       - 1880:1880
     volumes:
-      - ./data:/data
+      - ./data:/data:rw
+    networks:
+      - nodered
