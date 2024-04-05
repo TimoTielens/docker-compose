@@ -10,9 +10,6 @@ services:
       - 8123:8123
     privileged: true
     volumes:
-      - /homeassistant/config:/config:rw
+      - ./homeassistant/config:/config:rw
       - /run/dbus:/run/dbus:ro
-    networks:
-      -  homeassistant
-networks:
-  homeassistant:
+    network_mode: host
