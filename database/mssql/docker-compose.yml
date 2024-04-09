@@ -1,7 +1,7 @@
 version: '3.8' 
 services:
   sqlserver:
-    image: mcr.microsoft.com/mssql/server: ${MSSQL_IMAGE_VERSION:? database image version required}
+    image: mcr.microsoft.com/mssql/server:${MSSQL_IMAGE_VERSION:? database image version required}
     hostname: ${MSSQL_NAME:? database name required}
     container_name: ${MSSQL_NAME:? database name required}
     restart: unless-stopped
