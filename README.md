@@ -1,2 +1,2 @@
 # docker-compose
-Docker compose files that I am using privatally. But hey feel free to use them :)
+Docker compose files that I am using privately. But hey feel free to use them :)
