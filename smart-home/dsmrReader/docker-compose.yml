@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   dmsrdb:
-    image: postgres: ${DSMR_DB_IMAGE_VERSION:? dsmr database version required} 
+    image: postgres:${DSMR_DB_IMAGE_VERSION:? dsmr database version required} 
     hostname: ${DSMR_DB_NAME:? dsmr database name required}
     container_name: ${DSMR_DB_NAME:? dsmr database name required}
     restart: unless-stopped
@@ -24,7 +24,7 @@ services:
     networks:
       -  dsmrback
   dsmr:
-    image: ghcr.io/xirixiz/dsmr-reader-docker: ${DSMR_IMAGE_VERSION:? dsmr version required} 
+    image: ghcr.io/xirixiz/dsmr-reader-docker:${DSMR_IMAGE_VERSION:? dsmr version required} 
     hostname: ${DSMR_NAME:? dsmr name required}
     container_name: ${DSMR_NAME:? dsmr name required}
     restart: unless-stopped

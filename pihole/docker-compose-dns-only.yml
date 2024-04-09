@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   pihole:
-    image: pihole/pihole: ${PIHOLE_IMAGE_VERSION:? pihole image version required} 
+    image: pihole/pihole:${PIHOLE_IMAGE_VERSION:? pihole image version required} 
     hostname: ${PIHOLE_NAME:? pihole name required}
     container_name: ${PIHOLE_NAME:? pihole name required}
     restart: unless-stopped

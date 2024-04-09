@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   proxymanager:
-    image: jc21/nginx-proxy-manager: ${PROXY_MANAGER_IMAGE_VERSION:? proxy manager image version required}
+    image: jc21/nginx-proxy-manager:${PROXY_MANAGER_IMAGE_VERSION:? proxy manager image version required}
     hostname: ${PROXY_MANAGER_NAME:? proxy manager name required}
     container_name: ${PROXY_MANAGER_NAME:? proxy manager name required}
     restart: unless-stopped
