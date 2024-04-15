@@ -1,6 +1,6 @@
 version: "3.8"
 services:
-  dmsrdb:
+  dsmrdb:
     image: postgres:${DSMR_DB_IMAGE_VERSION:? dsmr database version required} 
     hostname: ${DSMR_DB_NAME:? dsmr database name required}
     container_name: ${DSMR_DB_NAME:? dsmr database name required}
