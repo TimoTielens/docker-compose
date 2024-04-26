@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  mosquitto:
+    image: eclipse-mosquitto:${MOSQUITTO_IMAGE_VERSION:? mosquitto image version required}
+    hostname: ${MOSQUITTO_NAME:? mosquitto name required}
+    container_name: ${MOSQUITTO_NAME:? mosquitto name required}
+    restart: unless-stopped
+    environment:
+      - TZ=${TIMEZONE:? timezone required}
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf:rw
+      - ./mosquitto/data:/mosquitto/data:rw
+      - ./mosquitto/log:/mosquitto/log:rw
+      - ./mosquitto:/etc/mosquitto:rw
+    networks:
+      - mosquitto

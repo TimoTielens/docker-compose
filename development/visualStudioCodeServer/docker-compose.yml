@@ -1,0 +1,25 @@
+env_file:
+  - path: ./vscode.env
+    required: true # default
+  - path: ./vscode.override.env
+    required: false
+
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:${VSCODE_IMAGE_VERSION:? VS Code image version required}
+    container_name: ${VSCODE_NAME:? Vs Code name required}
+    restart: always
+    environment:
+      - PUID=${VSCODE_PUID:? VS Code PUID required}
+      - PGID=${VSCODE_PGID:? VS Code PGID required}
+      - TZ=${TIMEZONE:? timezone required}
+      - PASSWORD=password #optional
+      - HASHED_PASSWORD= #optional
+      - SUDO_PASSWORD=password #optional
+      - SUDO_PASSWORD_HASH= #optional
+      - PROXY_DOMAIN=code-server.my.domain #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - ${VSCODE_VOLUME_config:? VS Code volume config required}:/config
+    ports:
+      - ${VSCODE_VOLUME_PORT_8443:? VS Code Port 8443 required}:8443

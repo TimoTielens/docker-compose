@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  zigbee2mqtt:
+    image: koenkk/zigbee2mqtt:${ZIGBEE2MQTT_IMAGE_VERSION:? home assistant version required} 
+    hostname: ${ZIGBEE2MQTT_NAME:?  home assistant name required}
+    container_name: ${ZIGBEE2MQTT_NAME:?  home assistant name required}
+    restart: unless-stopped
+    environment:
+      - TZ=${TIMEZONE:? timezone required}
+    ports:
+      - 8080:8080
+    network_mode: host
+    privileged: true
+    volumes:
+      - ./zigbee2mqtt/data:/app/data:rw
+      - /run/dbus:/run/dbus:ro
+    devices:
+      - /dev/serial/by-id/USB_DEVICE_HERE:/dev/ttyACM0
+    networks:
+      - zigbee2mqtt
+      - mosquitto

@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  proxymanager:
+    image: jc21/nginx-proxy-manager:${PROXY_MANAGER_IMAGE_VERSION:? proxy manager image version required}
+    hostname: ${PROXY_MANAGER_NAME:? proxy manager name required}
+    container_name: ${PROXY_MANAGER_NAME:? proxy manager name required}
+    restart: unless-stopped
+    environment:
+      - TZ=${TIMEZONE:? timezone required}
+    ports:
+      - 80:80 # Public HTTP Port
+      - 81:81 # Public HTTPS Port
+      - 443:443 # Admin Web Port
+    volumes:
+      - ./proxymanager/data:/data
+      - ./proxymanager/letsencrypt:/etc/letsencrypt
+    networks:
+      -  proxy

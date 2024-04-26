@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  nodered:
+    image: nodered/node-red:${NODERED_IMAGE_VERSION:? Node-RED image version required}
+    hostname: ${NODERED_NAME:? Node-RED name required}
+    container_name: ${NODERED_NAME:? Node-RED name required}
+    restart: unless-stopped
+    environment:
+      - TZ=${TIMEZONE:? timezone required}
+    ports:
+      - 1880:1880
+    volumes:
+      - ./nodered/data:/data:rw  # Owner of this folder and subfolders should be 1000:1000
+    networks:
+      - nodered
+      - mosquitto
